@@ -1,3 +1,6 @@
+// ignore_for_file: invalid_null_aware_operator
+// ignore_for_file: unnecessary_non_null_assertion
+
 library routemaster;
 
 export 'src/parser.dart';
