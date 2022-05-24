@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:routemaster/src/system_nav.dart';
 
 const kTransitionDuration = Duration(milliseconds: 350);
@@ -50,14 +50,12 @@ Future<void> recordUrlChanges(
 /// Simulates pressing the system back button
 Future<void> invokeSystemBack() {
   // ignore: invalid_use_of_protected_member
-  // ignore: unnecessary_non_null_assertion
-  return WidgetsBinding.instance!.handlePopRoute();
+  return WidgetsBinding.instance.handlePopRoute();
 }
 
 Future<void> setSystemUrl(String url) {
   // ignore: invalid_use_of_protected_member
-  // ignore: unnecessary_non_null_assertion
-  return WidgetsBinding.instance!.handlePushRoute(url);
+  return WidgetsBinding.instance.handlePushRoute(url);
 }
 
 class MaterialPageOne extends MaterialPage<void> {
