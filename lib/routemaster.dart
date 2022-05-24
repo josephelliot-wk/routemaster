@@ -1,28 +1,27 @@
-// ignore_for_file: invalid_null_aware_operator
-// ignore_for_file: unnecessary_non_null_assertion
-
 library routemaster;
 
-export 'src/parser.dart';
-export 'src/pages/guard.dart';
-export 'src/pages/transition_page.dart';
-
 import 'dart:async';
+
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
+
 import 'src/not_found_page.dart';
 import 'src/pages/guard.dart';
 import 'src/path_parser.dart';
 import 'src/system_nav.dart';
 import 'src/trie_router/trie_router.dart';
 
+export 'src/pages/guard.dart';
+export 'src/pages/transition_page.dart';
+export 'src/parser.dart';
+
+part 'src/observers.dart';
 part 'src/pages/page_stack.dart';
-part 'src/pages/tab_pages.dart';
 part 'src/pages/pages.dart';
 part 'src/pages/stack_page.dart';
-part 'src/observers.dart';
+part 'src/pages/tab_pages.dart';
 part 'src/route_data.dart';
 part 'src/route_history.dart';
 
@@ -529,7 +528,7 @@ class RoutemasterDelegate extends RouterDelegate<RouteData>
 
   void _setHasReported(_ReportType reportType) {
     _reported = reportType;
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _reported = _ReportType.none;
     });
   }
@@ -573,7 +572,7 @@ class RoutemasterDelegate extends RouterDelegate<RouteData>
 
       if (_isBuilding) {
         // Schedule update
-        WidgetsBinding.instance?.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           _updateCurrentConfiguration(
             requestSource: requestSource,
             isReplacement: isReplacement,
@@ -723,7 +722,7 @@ class RoutemasterDelegate extends RouterDelegate<RouteData>
           notifyListeners();
         }
 
-        WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           if (_state.pendingNavigation != null) {
             // Retry navigation
             _navigate(
@@ -769,7 +768,7 @@ class RoutemasterDelegate extends RouterDelegate<RouteData>
     _rebuildRouter(context);
 
     // Already building; schedule rebuild for next frame
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateCurrentConfiguration();
     });
   }
@@ -1209,7 +1208,7 @@ class _RoutemasterStateTrackerState extends State<_RoutemasterStateTracker> {
 
       newDelegate._rebuildRouter(context);
 
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         // Dispose after this frame to allow child widgets to unsubscribe
         oldDelegate.dispose();
       });

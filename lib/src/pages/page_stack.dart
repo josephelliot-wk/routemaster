@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_non_null_assertion
-
 part of '../../routemaster.dart';
 
 /// Manages a stack of pages. Used by [PageStackNavigator].
@@ -47,7 +45,7 @@ class PageStack extends ChangeNotifier {
       },
     ).toList();
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       // Flushes out any removed pages
       _routeMap = newRouteMap;
     });
